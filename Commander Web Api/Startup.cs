@@ -1,3 +1,4 @@
+using Commander_Web_Api.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,6 +27,10 @@ namespace Commander_Web_Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+
+            // We Add Our Main Repo To our Dependency Container  
+            services.AddScoped<ICommanderRepo, MockCommanderRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

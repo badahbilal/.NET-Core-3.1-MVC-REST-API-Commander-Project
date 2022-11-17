@@ -12,7 +12,12 @@ namespace Commander_Web_Api.Controllers
     public class CommandsController : ControllerBase
     {
 
-        private readonly MockCommanderRepo _commanderRepo = new MockCommanderRepo();
+        private readonly ICommanderRepo _commanderRepo;
+
+        public CommandsController(ICommanderRepo commanderRepo)
+        {
+            _commanderRepo = commanderRepo;
+        }
 
         //GET api/commands
         [HttpGet]
