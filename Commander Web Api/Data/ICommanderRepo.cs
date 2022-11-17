@@ -6,7 +6,7 @@ namespace Commander_Web_Api.Data
 {
     public interface ICommanderRepo
     {
-        IEnumerable<Command> GetAppCommands();
+        IEnumerable<Command> GetAllCommands();
 
         Command GetCommandById(int id);
 

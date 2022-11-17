@@ -31,7 +31,8 @@ namespace Commander_Web_Api
 
 
             // We Add Our Main Repo To our Dependency Container  
-            services.AddScoped<ICommanderRepo, MockCommanderRepo>();
+            // services.AddScoped<ICommanderRepo, MockCommanderRepo>();
+            services.AddScoped<ICommanderRepo, SqlServerCommanderRepo>();
 
 
             services.AddDbContext<CommanderContext>(x => x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));

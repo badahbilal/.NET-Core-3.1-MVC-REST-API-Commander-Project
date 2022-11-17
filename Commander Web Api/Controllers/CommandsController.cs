@@ -23,7 +23,7 @@ namespace Commander_Web_Api.Controllers
         [HttpGet]
         public ActionResult <IEnumerable<Command>> GetallCommands()
         {
-            var commandItems =  _commanderRepo.GetAppCommands();
+            var commandItems =  _commanderRepo.GetAllCommands();
 
             return Ok(commandItems);
 
