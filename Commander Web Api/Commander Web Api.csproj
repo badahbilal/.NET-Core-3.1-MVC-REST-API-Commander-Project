@@ -6,6 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20221117191653_First Migration.cs" />
+    <Compile Remove="Migrations\20221117191653_First Migration.Designer.cs" />
+    <Compile Remove="Migrations\20221117194409_Initial Migration.cs" />
+    <Compile Remove="Migrations\20221117194409_Initial Migration.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.30" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.30">
       <PrivateAssets>all</PrivateAssets>
