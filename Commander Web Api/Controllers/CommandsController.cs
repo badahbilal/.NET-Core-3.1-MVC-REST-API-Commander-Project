@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Commander_Web_Api.Data;
+using Commander_Web_Api.Dtos;
 using Commander_Web_Api.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections;
@@ -23,20 +24,35 @@ namespace Commander_Web_Api.Controllers
 
         }
 
+
+        #region
+        ////GET api/commands
+        //[HttpGet]
+        //public ActionResult <IEnumerable<Command>> GetallCommands()
+        //{
+        //    var commandItems =  _commanderRepo.GetAllCommands();
+
+        //    return Ok(commandItems);
+
+        //}
+        #endregion
+
         //GET api/commands
         [HttpGet]
-        public ActionResult <IEnumerable<Command>> GetallCommands()
+        public ActionResult<IEnumerable<CommandReadDto>> GetallCommands()
         {
-            var commandItems =  _commanderRepo.GetAllCommands();
+            var commandItems = _commanderRepo.GetAllCommands();
 
-            return Ok(commandItems);
+            return Ok(_mapper.Map<IEnumerable<CommandReadDto>>(commandItems));
 
         }
 
 
         //GET this method should response for api/commands/5
         [HttpGet("{id}")]
-        public ActionResult <Command> GetCommandById(int id)
+
+        // Here we've changed the type of return from Command to CommandReadDto
+        public ActionResult<CommandReadDto> GetCommandById(int id)
         {
             var commandItem = _commanderRepo.GetCommandById(id);
 
@@ -44,8 +60,25 @@ namespace Commander_Web_Api.Controllers
             {
                 return NotFound();
             }
-            return Ok(commandItem);
+            // we return the commandReadDto after mapping
+            return Ok(_mapper.Map<CommandReadDto>(commandItem));
 
         }
+        // this is the old method
+        #region
+        ////GET this method should response for api/commands/5
+        //[HttpGet("{id}")]
+        //public ActionResult <Command> GetCommandById(int id)
+        //{
+        //    var commandItem = _commanderRepo.GetCommandById(id);
+
+        //    if (commandItem == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return Ok(commandItem);
+
+        //}
+        #endregion
     }
 }
