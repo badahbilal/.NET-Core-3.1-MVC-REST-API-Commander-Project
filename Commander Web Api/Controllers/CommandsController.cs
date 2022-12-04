@@ -64,7 +64,7 @@ namespace Commander_Web_Api.Controllers
 
         //}
         #endregion
-        //GET this method should response for api/commands/5
+        //GET this method should response for api/commands/{id}
         [HttpGet("{id}", Name = "GetCommandById")]
 
         // Here we've changed the type of return from Command to CommandReadDto
@@ -97,5 +97,24 @@ namespace Commander_Web_Api.Controllers
           
         }
 
+
+        //put api/commands/{id}
+        [HttpPut("{id}")]
+        public  ActionResult UpdateCommand(int id, CommandUpdateDto commandUpdateDto)
+        {
+            var commandModelFromRepo = _commanderRepo.GetCommandById(id);
+            
+            if(commandModelFromRepo == null)
+            {
+                return NotFound();
+            }
+
+            _mapper.Map(commandUpdateDto, commandModelFromRepo);
+
+            _commanderRepo.UpdateCommand(commandModelFromRepo);
+            _commanderRepo.SaveChanges();
+
+            return NoContent();
+        }
     }
 }

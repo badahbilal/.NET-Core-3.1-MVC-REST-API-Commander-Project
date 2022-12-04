@@ -15,6 +15,8 @@ namespace Commander_Web_Api.Profiles
 
             CreateMap<CommandCreateDto, Command>();
 
+            CreateMap<CommandUpdateDto, Command>();
+
 
         }
     }
