@@ -65,7 +65,7 @@ namespace Commander_Web_Api.Controllers
         //}
         #endregion
         //GET this method should response for api/commands/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetCommandById")]
 
         // Here we've changed the type of return from Command to CommandReadDto
         public ActionResult<CommandReadDto> GetCommandById(int id)
@@ -81,6 +81,26 @@ namespace Commander_Web_Api.Controllers
 
         }
 
-        
+        //POST api/commands
+        [HttpPost]
+        public ActionResult<CommandReadDto> CreateCommand(CommandCreateDto commandCreateDto)
+        {
+            //var commandModel = _mapper.Map<Command>(commandCreateDto);
+
+            Command cmd = new Command()
+            {
+                HowTo = commandCreateDto.HowTo,
+                Line = commandCreateDto.Line,
+                Plateform = commandCreateDto.Plateform
+            };
+            _commanderRepo.CreateCommand(cmd);
+            _commanderRepo.SaveChanges();
+
+            var commandReadDto = _mapper.Map<CommandReadDto>(cmd);
+
+            return CreatedAtRoute(nameof(GetCommandById), new { Id = commandReadDto.Id }, commandReadDto);
+          
+        }
+
     }
 }

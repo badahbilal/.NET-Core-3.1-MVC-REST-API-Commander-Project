@@ -1,4 +1,6 @@
-﻿namespace Commander_Web_Api.Dtos
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Commander_Web_Api.Dtos
 {
     public class CommandCreateDto
     {
