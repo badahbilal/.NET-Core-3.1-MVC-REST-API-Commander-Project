@@ -48,22 +48,6 @@ namespace Commander_Web_Api.Controllers
         }
 
 
-        //GET this method should response for api/commands/5
-        [HttpGet("{id}")]
-
-        // Here we've changed the type of return from Command to CommandReadDto
-        public ActionResult<CommandReadDto> GetCommandById(int id)
-        {
-            var commandItem = _commanderRepo.GetCommandById(id);
-
-            if (commandItem == null)
-            {
-                return NotFound();
-            }
-            // we return the commandReadDto after mapping
-            return Ok(_mapper.Map<CommandReadDto>(commandItem));
-
-        }
         // this is the old method
         #region
         ////GET this method should response for api/commands/5
@@ -80,5 +64,23 @@ namespace Commander_Web_Api.Controllers
 
         //}
         #endregion
+        //GET this method should response for api/commands/5
+        [HttpGet("{id}")]
+
+        // Here we've changed the type of return from Command to CommandReadDto
+        public ActionResult<CommandReadDto> GetCommandById(int id)
+        {
+            var commandItem = _commanderRepo.GetCommandById(id);
+
+            if (commandItem == null)
+            {
+                return NotFound();
+            }
+            // we return the commandReadDto after mapping
+            return Ok(_mapper.Map<CommandReadDto>(commandItem));
+
+        }
+
+        
     }
 }
