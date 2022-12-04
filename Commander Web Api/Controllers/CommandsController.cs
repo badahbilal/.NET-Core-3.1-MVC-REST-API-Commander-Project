@@ -36,7 +36,12 @@ namespace Commander_Web_Api.Controllers
         {
             var commandItem = _commanderRepo.GetCommandById(id);
 
+            if (commandItem == null)
+            {
+                return NotFound();
+            }
             return Ok(commandItem);
+
         }
     }
 }
