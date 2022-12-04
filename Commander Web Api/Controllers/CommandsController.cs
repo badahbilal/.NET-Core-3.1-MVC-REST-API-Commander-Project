@@ -1,4 +1,5 @@
-﻿using Commander_Web_Api.Data;
+﻿using AutoMapper;
+using Commander_Web_Api.Data;
 using Commander_Web_Api.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections;
@@ -13,10 +14,13 @@ namespace Commander_Web_Api.Controllers
     {
 
         private readonly ICommanderRepo _commanderRepo;
+        private readonly IMapper _mapper;
 
-        public CommandsController(ICommanderRepo commanderRepo)
+        public CommandsController(ICommanderRepo commanderRepo, IMapper mapper)
         {
             _commanderRepo = commanderRepo;
+            _mapper = mapper;
+
         }
 
         //GET api/commands
