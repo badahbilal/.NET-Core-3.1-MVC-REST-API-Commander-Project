@@ -85,14 +85,9 @@ namespace Commander_Web_Api.Controllers
         [HttpPost]
         public ActionResult<CommandReadDto> CreateCommand(CommandCreateDto commandCreateDto)
         {
-            //var commandModel = _mapper.Map<Command>(commandCreateDto);
+            var cmd = _mapper.Map<Command>(commandCreateDto);
 
-            Command cmd = new Command()
-            {
-                HowTo = commandCreateDto.HowTo,
-                Line = commandCreateDto.Line,
-                Plateform = commandCreateDto.Plateform
-            };
+            
             _commanderRepo.CreateCommand(cmd);
             _commanderRepo.SaveChanges();
 

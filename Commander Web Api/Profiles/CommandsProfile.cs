@@ -10,9 +10,11 @@ namespace Commander_Web_Api.Profiles
         {
 
             // Source ===> Target
-            CreateMap<CommandReadDto, Command>();
 
             CreateMap<Command, CommandReadDto>();
+
+            CreateMap<CommandCreateDto, Command>();
+
 
         }
     }
