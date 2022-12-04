@@ -35,6 +35,11 @@ namespace Commander_Web_Api
             services.AddScoped<ICommanderRepo, SqlServerCommanderRepo>();
 
 
+            // adding automapper to manage transferring data from our service to client side.
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+
+            // adding sqlServerRepo to DependensyInjection Container 
             services.AddDbContext<CommanderContext>(x => x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }
 
